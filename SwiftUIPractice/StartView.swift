@@ -9,12 +9,12 @@ import SwiftUI
 
 struct StartView: View {
     var body: some View {
-        NavigationView {
+        NavigationWrapper {
             VStack {
                 Spacer()
-                Image("launch")
+                Image("launch_phrase")
                 Spacer()
-                Image("launchImage")
+                Image("launch_Image")
                 Spacer()
                 NavigationLink("시작하기") {
                     ProfileSettingView()

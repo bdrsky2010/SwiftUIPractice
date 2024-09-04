@@ -18,8 +18,13 @@ struct MovieCategoryView: View {
             .toolbar {
                 ToolbarItem {
                     Button("추가") {
-                        guard !text.isEmpty else { return }
-                        genreList.append(.init(genre: text, movies: []))
+                        if let randomGenre = [
+                            "스릴러", "로맨스", "애니메이션", "가족", "SF", "코미디"
+                        ].randomElement() {
+                            genreList.append(
+                                .init(genre: randomGenre, movies: [])
+                            )
+                        }
                     }
                 }
             }

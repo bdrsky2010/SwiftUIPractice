@@ -10,6 +10,13 @@
 		7B7BAC352C871E6F0045695C /* Market.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B7BAC342C871E6F0045695C /* Market.swift */; };
 		7B7BAC372C871E8D0045695C /* UpbitAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B7BAC362C871E8D0045695C /* UpbitAPI.swift */; };
 		7B7BAC392C871F000045695C /* MarketDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B7BAC382C871F000045695C /* MarketDetailView.swift */; };
+		7B7BAC402C8892BF0045695C /* MyRandomImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B7BAC3F2C8892BF0045695C /* MyRandomImageView.swift */; };
+		7B7BAC422C8893990045695C /* LazyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B7BAC412C8893990045695C /* LazyView.swift */; };
+		7B7BAC442C8895040045695C /* PosterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B7BAC432C8895040045695C /* PosterView.swift */; };
+		7B7BAC462C88961B0045695C /* PushRandomImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B7BAC452C88961B0045695C /* PushRandomImageView.swift */; };
+		7B7BAC482C8896D60045695C /* RandomSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B7BAC472C8896D60045695C /* RandomSection.swift */; };
+		7B7BAC4B2C88A47F0045695C /* MovieCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B7BAC4A2C88A47F0045695C /* MovieCategoryView.swift */; };
+		7B7BAC4D2C88A6CC0045695C /* MovieGenre.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B7BAC4C2C88A6CC0045695C /* MovieGenre.swift */; };
 		7BA673712C85B9D800D4F792 /* SwiftUIPracticeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA673702C85B9D800D4F792 /* SwiftUIPracticeApp.swift */; };
 		7BA673732C85B9D800D4F792 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA673722C85B9D800D4F792 /* ContentView.swift */; };
 		7BA673752C85B9D900D4F792 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7BA673742C85B9D900D4F792 /* Assets.xcassets */; };
@@ -28,6 +35,13 @@
 		7B7BAC342C871E6F0045695C /* Market.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Market.swift; sourceTree = "<group>"; };
 		7B7BAC362C871E8D0045695C /* UpbitAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpbitAPI.swift; sourceTree = "<group>"; };
 		7B7BAC382C871F000045695C /* MarketDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketDetailView.swift; sourceTree = "<group>"; };
+		7B7BAC3F2C8892BF0045695C /* MyRandomImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyRandomImageView.swift; sourceTree = "<group>"; };
+		7B7BAC412C8893990045695C /* LazyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LazyView.swift; sourceTree = "<group>"; };
+		7B7BAC432C8895040045695C /* PosterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PosterView.swift; sourceTree = "<group>"; };
+		7B7BAC452C88961B0045695C /* PushRandomImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushRandomImageView.swift; sourceTree = "<group>"; };
+		7B7BAC472C8896D60045695C /* RandomSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomSection.swift; sourceTree = "<group>"; };
+		7B7BAC4A2C88A47F0045695C /* MovieCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCategoryView.swift; sourceTree = "<group>"; };
+		7B7BAC4C2C88A6CC0045695C /* MovieGenre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieGenre.swift; sourceTree = "<group>"; };
 		7BA6736D2C85B9D800D4F792 /* SwiftUIPractice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftUIPractice.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7BA673702C85B9D800D4F792 /* SwiftUIPracticeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIPracticeApp.swift; sourceTree = "<group>"; };
 		7BA673722C85B9D800D4F792 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -54,6 +68,48 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7B7BAC3C2C8891F60045695C /* ProfileSetting */ = {
+			isa = PBXGroup;
+			children = (
+				7BA6737E2C85BA5800D4F792 /* StartView.swift */,
+				7BA673802C85BF9C00D4F792 /* ProfileSettingView.swift */,
+				7BA673872C85DAA300D4F792 /* ProfileImageSettingView.swift */,
+				7BA673852C85D76E00D4F792 /* CompleteView.swift */,
+			);
+			path = ProfileSetting;
+			sourceTree = "<group>";
+		};
+		7B7BAC3D2C88921B0045695C /* MarketList */ = {
+			isa = PBXGroup;
+			children = (
+				7BA6738C2C85E40C00D4F792 /* MarketView.swift */,
+				7B7BAC382C871F000045695C /* MarketDetailView.swift */,
+				7B7BAC342C871E6F0045695C /* Market.swift */,
+				7B7BAC362C871E8D0045695C /* UpbitAPI.swift */,
+			);
+			path = MarketList;
+			sourceTree = "<group>";
+		};
+		7B7BAC3E2C8892A30045695C /* MyRandomImage */ = {
+			isa = PBXGroup;
+			children = (
+				7B7BAC472C8896D60045695C /* RandomSection.swift */,
+				7B7BAC432C8895040045695C /* PosterView.swift */,
+				7B7BAC3F2C8892BF0045695C /* MyRandomImageView.swift */,
+				7B7BAC452C88961B0045695C /* PushRandomImageView.swift */,
+			);
+			path = MyRandomImage;
+			sourceTree = "<group>";
+		};
+		7B7BAC492C88A4010045695C /* MovieCategory */ = {
+			isa = PBXGroup;
+			children = (
+				7B7BAC4A2C88A47F0045695C /* MovieCategoryView.swift */,
+				7B7BAC4C2C88A6CC0045695C /* MovieGenre.swift */,
+			);
+			path = MovieCategory;
+			sourceTree = "<group>";
+		};
 		7BA673642C85B9D800D4F792 = {
 			isa = PBXGroup;
 			children = (
@@ -73,19 +129,15 @@
 		7BA6736F2C85B9D800D4F792 /* SwiftUIPractice */ = {
 			isa = PBXGroup;
 			children = (
+				7BA673702C85B9D800D4F792 /* SwiftUIPracticeApp.swift */,
+				7BA673722C85B9D800D4F792 /* ContentView.swift */,
 				7BA673912C86148000D4F792 /* Wrapper */,
 				7BA673892C85DAD700D4F792 /* ReusableView */,
 				7BA673822C85D42300D4F792 /* Modifier */,
-				7BA673702C85B9D800D4F792 /* SwiftUIPracticeApp.swift */,
-				7BA673722C85B9D800D4F792 /* ContentView.swift */,
-				7BA6737E2C85BA5800D4F792 /* StartView.swift */,
-				7BA673802C85BF9C00D4F792 /* ProfileSettingView.swift */,
-				7BA673872C85DAA300D4F792 /* ProfileImageSettingView.swift */,
-				7BA673852C85D76E00D4F792 /* CompleteView.swift */,
-				7BA6738C2C85E40C00D4F792 /* MarketView.swift */,
-				7B7BAC382C871F000045695C /* MarketDetailView.swift */,
-				7B7BAC342C871E6F0045695C /* Market.swift */,
-				7B7BAC362C871E8D0045695C /* UpbitAPI.swift */,
+				7B7BAC3C2C8891F60045695C /* ProfileSetting */,
+				7B7BAC3D2C88921B0045695C /* MarketList */,
+				7B7BAC3E2C8892A30045695C /* MyRandomImage */,
+				7B7BAC492C88A4010045695C /* MovieCategory */,
 				7BA673742C85B9D900D4F792 /* Assets.xcassets */,
 				7BA673762C85B9D900D4F792 /* Preview Content */,
 			);
@@ -120,6 +172,7 @@
 			isa = PBXGroup;
 			children = (
 				7BA673922C86148D00D4F792 /* NavigationWrapper.swift */,
+				7B7BAC412C8893990045695C /* LazyView.swift */,
 			);
 			path = Wrapper;
 			sourceTree = "<group>";
@@ -200,14 +253,21 @@
 			files = (
 				7BA6738B2C85DAFB00D4F792 /* ProfileImageView.swift in Sources */,
 				7B7BAC352C871E6F0045695C /* Market.swift in Sources */,
+				7B7BAC482C8896D60045695C /* RandomSection.swift in Sources */,
 				7BA6737F2C85BA5800D4F792 /* StartView.swift in Sources */,
+				7B7BAC422C8893990045695C /* LazyView.swift in Sources */,
+				7B7BAC4B2C88A47F0045695C /* MovieCategoryView.swift in Sources */,
+				7B7BAC462C88961B0045695C /* PushRandomImageView.swift in Sources */,
 				7BA673842C85D45200D4F792 /* BlueCapsule.swift in Sources */,
 				7BA6738D2C85E40C00D4F792 /* MarketView.swift in Sources */,
 				7B7BAC392C871F000045695C /* MarketDetailView.swift in Sources */,
 				7BA673812C85BF9C00D4F792 /* ProfileSettingView.swift in Sources */,
 				7BA673732C85B9D800D4F792 /* ContentView.swift in Sources */,
+				7B7BAC4D2C88A6CC0045695C /* MovieGenre.swift in Sources */,
 				7B7BAC372C871E8D0045695C /* UpbitAPI.swift in Sources */,
+				7B7BAC442C8895040045695C /* PosterView.swift in Sources */,
 				7BA673712C85B9D800D4F792 /* SwiftUIPracticeApp.swift in Sources */,
+				7B7BAC402C8892BF0045695C /* MyRandomImageView.swift in Sources */,
 				7BA673932C86148D00D4F792 /* NavigationWrapper.swift in Sources */,
 				7BA673862C85D76E00D4F792 /* CompleteView.swift in Sources */,
 				7BA673882C85DAA300D4F792 /* ProfileImageSettingView.swift in Sources */,

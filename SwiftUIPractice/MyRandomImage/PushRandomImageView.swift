@@ -8,20 +8,22 @@
 import SwiftUI
 
 struct PushRandomImageView: View {
-    private let section: RandomSectionType
+    @Binding var section: RandomSection
     private let number: Int
     
-    init(section: RandomSectionType, number: Int) {
-        self.section = section
+    init(section: Binding<RandomSection>, number: Int) {
+        self._section = section
         self.number = number
     }
     
     var body: some View {
         PosterView(number: number, type: .detail)
-        Text(section.header)
+        TextField("섹션 이름을 입력해주세요", text: $section.header)
+            .padding()
+            .textFieldStyle(.roundedBorder)
     }
 }
 
 #Preview {
-    PushRandomImageView(section: .one, number: 1)
+    PushRandomImageView(section: .constant(.init(header: "첫번째 섹션", numbers: [])), number: 1)
 }

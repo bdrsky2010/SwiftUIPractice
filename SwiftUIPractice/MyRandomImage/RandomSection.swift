@@ -27,7 +27,7 @@ enum RandomSectionType: Int, CaseIterable {
 
 struct RandomSection: Hashable, Identifiable {
     let id = UUID()
-    let section: RandomSectionType
+    var header: String
     let numbers: [RandomNumber]
 }
 
@@ -38,7 +38,7 @@ struct RandomNumber: Hashable, Identifiable {
 
 let sectionDummy = RandomSectionType.allCases.map {
     RandomSection(
-        section: $0, numbers: (0...10).map { _ in
+        header: $0.header, numbers: (0...10).map { _ in
             RandomNumber(number: Int.random(in: 1...100))
         }
     )

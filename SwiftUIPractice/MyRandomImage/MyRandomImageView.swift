@@ -13,7 +13,7 @@ struct MyRandomImageView: View {
     var body: some View {
         NavigationWrapper {
             VStack {
-                allSectionPart()
+                allSectionPart() 
             }
             .padding(.vertical, 20)
             .navigationTitle("My Random Image")
@@ -25,17 +25,17 @@ struct MyRandomImageView: View {
     
     private func allSectionPart() -> some View {
         ScrollView {
-            ForEach(sections, id: \.id) { section in
+            ForEach($sections, id: \.id) { section in
                 sectionPart(section)
             }
         }
     }
     
     private func sectionPart(
-        _ section: RandomSection
+        _ section: Binding<RandomSection>
     ) -> some View {
         VStack(alignment: .leading) {
-            Text(section.section.header)
+            Text(section.wrappedValue.header)
                 .font(.title3)
             horizontalImage(section: section)
         }
@@ -43,15 +43,15 @@ struct MyRandomImageView: View {
     }
     
     private func horizontalImage(
-        section: RandomSection
+        section: Binding<RandomSection>
     ) -> some View {
         ScrollView(.horizontal) {
             HStack(spacing: 10) {
-                ForEach(section.numbers, id: \.id) { number in
+                ForEach(section.wrappedValue.numbers, id: \.id) { number in
                     NavigationLink {
                         LazyView(
                             PushRandomImageView(
-                                section: section.section,
+                                section: section,
                                 number: number.number
                             )
                         )

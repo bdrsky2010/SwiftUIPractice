@@ -16,7 +16,7 @@ struct MatchedView: View {
             if !isShow {
                 CourseItem(namespace: namespace, isShow: $isShow)
             } else {
-                CourseView(namespace: namespace, isShow: $isShow)
+//                CourseView(namespace: namespace, isShow: $isShow)
             }
         }
         .onTapGesture {

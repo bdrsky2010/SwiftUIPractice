@@ -10,11 +10,27 @@ import SwiftUI
 struct CourseView: View {
     var namespace: Namespace.ID
     @Binding var isShow: Bool
+    @Binding var dragOffset: CGSize
+    @State private var offset: CGSize = .zero
     
     var body: some View {
         ZStack {
             ScrollView {
                 cover
+                    .gesture(
+                        DragGesture(minimumDistance: 0)
+                            .onChanged { gesture in
+                                dragOffset = gesture.translation
+                            }
+                            .onEnded { _ in
+                                if dragOffset.height > 20 {
+                                    withAnimation(.spring(response: 0.6,
+                                                          dampingFraction: 0.8)) {
+                                        isShow = false
+                                    }
+                                }
+                            }
+                    )
             }
             .background(Color.gray.opacity(0.5))
             .ignoresSafeArea()
@@ -99,5 +115,5 @@ struct CourseView: View {
 
 #Preview {
     @Namespace var namespace
-    return CourseView(namespace: namespace, isShow: .constant(true))
+    return CourseView(namespace: namespace, isShow: .constant(true), dragOffset: .constant(.zero))
 }

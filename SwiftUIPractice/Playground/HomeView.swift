@@ -10,6 +10,8 @@ import SwiftUI
 struct HomeView: View {
     @Namespace var namespace
     @State private var isShow = false
+    @State private var dragOffset: CGSize = .zero
+    
     var body: some View {
         ZStack {
             Color.indigo.opacity(0.8).ignoresSafeArea()
@@ -34,13 +36,9 @@ struct HomeView: View {
                     }
                 
             }
+
             if isShow {
-                CourseView(namespace: namespace, isShow: $isShow)
-                    .onTapGesture {
-                        withAnimation(.spring(response: 0.6, dampingFraction: 0.8)) {
-                            isShow.toggle()
-                        }
-                    }
+                CourseView(namespace: namespace, isShow: $isShow, dragOffset: $dragOffset)
             }
         }
     }

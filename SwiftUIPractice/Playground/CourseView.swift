@@ -7,34 +7,90 @@
 
 import SwiftUI
 
+// 스크롤 오프셋을 저장하기 위한 PreferenceKey
+struct ScrollOffsetPreferenceKey: PreferenceKey {
+    static var defaultValue: CGFloat = 0
+
+    static func reduce(value: inout CGFloat, nextValue: () -> CGFloat) {
+        value = nextValue()
+    }
+}
+
 struct CourseView: View {
     var namespace: Namespace.ID
     @Binding var isShow: Bool
     @Binding var dragOffset: CGSize
+    @State private var scaleFactor: CGFloat = 1
     @State private var offset: CGSize = .zero
+    @State private var scrollOffset: CGFloat = 0 // 스크롤 오프셋을 저장하는 변수
+    @State private var defaultOffset: CGFloat = 0
     
     var body: some View {
         ZStack {
             ScrollView {
-                cover
-                    .gesture(
-                        DragGesture(minimumDistance: 0)
-                            .onChanged { gesture in
-                                dragOffset = gesture.translation
-                            }
-                            .onEnded { _ in
-                                if dragOffset.height > 20 {
-                                    withAnimation(.spring(response: 0.6,
-                                                          dampingFraction: 0.8)) {
-                                        isShow = false
-                                    }
-                                }
-                            }
-                    )
+                VStack {
+                    cover
+                    GeometryReader { proxy in
+                        Color.clear
+                            .preference(key: ScrollOffsetPreferenceKey.self, value: proxy.frame(in: .named("scrollView")).minY)
+                    }
+                    VStack {
+                        Text("kjsadhfljksadhflkjhdsalf")
+                        Text("kjsadhfljksadhflkjhdsalf")
+                        Text("kjsadhfljksadhflkjhdsalf")
+                        Text("kjsadhfljksadhflkjhdsalf")
+                        Text("kjsadhfljksadhflkjhdsalf")
+                        Text("kjsadhfljksadhflkjhdsalf")
+                        Text("kjsadhfljksadhflkjhdsalf")
+                        Text("kjsadhfljksadhflkjhdsalf")
+                        Text("kjsadhfljksadhflkjhdsalf")
+                        Text("kjsadhfljksadhflkjhdsalf")
+                        Text("kjsadhfljksadhflkjhdsalf")
+                        Text("kjsadhfljksadhflkjhdsalf")
+                        Text("kjsadhfljksadhflkjhdsalf")
+                        Text("kjsadhfljksadhflkjhdsalf")
+                        Text("kjsadhfljksadhflkjhdsalf")
+                        Text("kjsadhfljksadhflkjhdsalf")
+                        Text("kjsadhfljksadhflkjhdsalf")
+                        Text("kjsadhfljksadhflkjhdsalf")
+                        Text("kjsadhfljksadhflkjhdsalf")
+                        Text("kjsadhfljksadhflkjhdsalf")
+                    }
+                }
+                .scaleEffect(scaleFactor)
             }
             .background(Color.gray.opacity(0.5))
             .ignoresSafeArea()
             .statusBar(hidden: true)
+            .coordinateSpace(name: "scrollView")
+            .onPreferenceChange(ScrollOffsetPreferenceKey.self) { value in
+                print(value)
+                if defaultOffset == 0 { 
+                    defaultOffset = value
+                    print(defaultOffset)
+                }
+                if value - defaultOffset > 0 {
+                    withAnimation(.spring(response: 0.6,
+                                          dampingFraction: 0.8)) {
+                        scaleFactor = 1 - (0.1 * ((value - defaultOffset) / 80))
+                    }
+                    
+                    print("scaleFactor", scaleFactor)
+                }
+                
+                if value <= defaultOffset {
+                    withAnimation(.spring(response: 0.6,
+                                          dampingFraction: 0.8)) {
+                        scaleFactor = 1
+                    }
+                }
+
+                if value - defaultOffset > 80 {
+                    withAnimation(.spring(response: 0.6, dampingFraction: 0.8)) {
+                        isShow = false
+                    }
+                }
+            }
             
             Button {
                 withAnimation(.spring(response: 0.6, dampingFraction: 0.8)) {

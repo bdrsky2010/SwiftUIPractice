@@ -11,6 +11,7 @@ struct HomeView: View {
     @Namespace var namespace
     @State private var isShow = false
     @State private var dragOffset: CGSize = .zero
+    @State private var scaleFactor: CGFloat = 1
     
     var body: some View {
         ZStack {
@@ -36,9 +37,12 @@ struct HomeView: View {
                     }
                 
             }
+            .blur(radius: isShow ? 20.0 : 0.0)
 
             if isShow {
-                CourseView(namespace: namespace, isShow: $isShow, dragOffset: $dragOffset)
+                CourseView(namespace: namespace,
+                           isShow: $isShow,
+                           dragOffset: $dragOffset)
             }
         }
     }

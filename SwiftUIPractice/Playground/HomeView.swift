@@ -31,8 +31,8 @@ struct HomeView: View {
                 
                 CourseItem(namespace: namespace, isShow: $isShow)
                     .onTapGesture {
-                        withAnimation(.spring(response: 0.6, dampingFraction: 0.8)) {
-                            isShow.toggle()
+                        withAnimation(.spring(response: 0.6, dampingFraction: 0.9)) {
+                            isShow = true
                         }
                     }
                 

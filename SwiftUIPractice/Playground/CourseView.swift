@@ -34,28 +34,6 @@ struct CourseView: View {
                         Color.clear
                             .preference(key: ScrollOffsetPreferenceKey.self, value: proxy.frame(in: .named("scrollView")).minY)
                     }
-                    VStack {
-                        Text("kjsadhfljksadhflkjhdsalf")
-                        Text("kjsadhfljksadhflkjhdsalf")
-                        Text("kjsadhfljksadhflkjhdsalf")
-                        Text("kjsadhfljksadhflkjhdsalf")
-                        Text("kjsadhfljksadhflkjhdsalf")
-                        Text("kjsadhfljksadhflkjhdsalf")
-                        Text("kjsadhfljksadhflkjhdsalf")
-                        Text("kjsadhfljksadhflkjhdsalf")
-                        Text("kjsadhfljksadhflkjhdsalf")
-                        Text("kjsadhfljksadhflkjhdsalf")
-                        Text("kjsadhfljksadhflkjhdsalf")
-                        Text("kjsadhfljksadhflkjhdsalf")
-                        Text("kjsadhfljksadhflkjhdsalf")
-                        Text("kjsadhfljksadhflkjhdsalf")
-                        Text("kjsadhfljksadhflkjhdsalf")
-                        Text("kjsadhfljksadhflkjhdsalf")
-                        Text("kjsadhfljksadhflkjhdsalf")
-                        Text("kjsadhfljksadhflkjhdsalf")
-                        Text("kjsadhfljksadhflkjhdsalf")
-                        Text("kjsadhfljksadhflkjhdsalf")
-                    }
                 }
                 .scaleEffect(scaleFactor)
             }
@@ -86,14 +64,14 @@ struct CourseView: View {
                 }
 
                 if value - defaultOffset > 80 {
-                    withAnimation(.spring(response: 0.6, dampingFraction: 0.8)) {
+                    withAnimation(.spring(response: 0.6, dampingFraction: 1.0)) {
                         isShow = false
                     }
                 }
             }
             
             Button {
-                withAnimation(.spring(response: 0.6, dampingFraction: 0.8)) {
+                withAnimation(.spring(response: 0.8, dampingFraction: 0.8)) {
                     isShow.toggle()
                 }
             } label: {
@@ -121,29 +99,29 @@ struct CourseView: View {
             Image("illust")
                 .resizable()
                 .aspectRatio(contentMode: .fit)
-                .matchedGeometryEffect(id: "image", in: namespace)
+                .matchedGeometryEffect(id: "image", in: namespace, isSource: isShow)
         )
         .background(
             Image("back")
                 .resizable()
                 .aspectRatio(contentMode: .fill)
-                .matchedGeometryEffect(id: "background", in: namespace)
+                .matchedGeometryEffect(id: "background", in: namespace, isSource: isShow)
         )
         .mask {
             RoundedRectangle(cornerRadius: 30, style: .continuous)
-                .matchedGeometryEffect(id: "mask", in: namespace)
+                .matchedGeometryEffect(id: "mask", in: namespace, isSource: isShow)
         }
         .overlay {
             VStack(alignment: .leading, spacing: 12) {
                 Text("Build an iOS app for iOS 15 with custom layouts, animations and ... ")
                     .font(.footnote)
-                    .matchedGeometryEffect(id: "text", in: namespace)
+                    .matchedGeometryEffect(id: "text", in: namespace, isSource: isShow)
                 Text("20 sections - 3 hours".uppercased())
                     .font(.footnote.weight(.semibold))
-                    .matchedGeometryEffect(id: "subtitle", in: namespace)
+                    .matchedGeometryEffect(id: "subtitle", in: namespace, isSource: isShow)
                 Text("SwiftUI")
                     .font(.largeTitle.weight(.bold))
-                    .matchedGeometryEffect(id: "title", in: namespace)
+                    .matchedGeometryEffect(id: "title", in: namespace, isSource: isShow)
                     .frame(maxWidth: .infinity, alignment: .leading)
                 Divider()
                 HStack {
@@ -161,7 +139,7 @@ struct CourseView: View {
                 Rectangle()
                     .fill(Material.ultraThin)
                     .mask(RoundedRectangle(cornerRadius: 30, style: .continuous))
-                    .matchedGeometryEffect(id: "blur", in: namespace)
+                    .matchedGeometryEffect(id: "blur", in: namespace, isSource: isShow)
             )
             .offset(y: 250)
             .padding(20)

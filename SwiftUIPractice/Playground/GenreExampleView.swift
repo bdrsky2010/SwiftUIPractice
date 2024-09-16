@@ -74,18 +74,52 @@ struct GenreExampleView: View {
                 .frame(height: 200)
         }
         .sheet(isPresented: .constant(true)) {
-            ScrollView {
-                VStack {
-                    LazyVGrid(columns: [GridItem(.flexible(minimum: 0))], spacing: 16) {
-                        ForEach(selectedGenres.sorted { $0.name < $1.name }, id: \.id) { genre in
-                            SelectedGenreView(selectedGenres: $selectedGenres, genre: genre)
-                        }
+            VStack {
+                var width = CGFloat.zero
+                var height = CGFloat.zero
+                GeometryReader { geo in
+                    ScrollView {
+                        ZStack(alignment: .topLeading, content: {
+                            ForEach(selectedGenres.sorted { $0.name < $1.name }, id: \.id) { genre in
+                                SelectedGenreView(selectedGenres: $selectedGenres, genre: genre)
+                                    .padding(.all, 5)
+                                    .alignmentGuide(.leading) { dimension in
+                                        if (abs(width - dimension.width) > geo.size.width) {
+                                            width = 0
+                                            height -= dimension.height
+                                        }
+                                        let result = width
+                                        if genre.id == selectedGenres.sorted(by: { $0.name < $1.name }).last!.id {
+                                            width = 0
+                                        } else {
+                                            width -= dimension.width
+                                        }
+                                        return result
+                                    }
+                                    .alignmentGuide(.top) { dimension in
+                                        let result = height
+                                        if genre.id == selectedGenres.sorted(by: { $0.name < $1.name }).last!.id {
+                                            height = 0
+                                        }
+                                        return result
+                                    }
+                            }
+                        })
                     }
-                    .border(.blue, width: 2)
+                }
+                Button {
+                    
+                } label: {
+                    Text("Done")
+                        .font(.title)
+                        .frame(maxWidth: .infinity)
+                        .padding(.horizontal, 20)
+                        .padding(.vertical, 8)
+                        .background(Color(uiColor: .button).opacity(0.3))
+                        .foregroundStyle(Color(uiColor: .button))
                 }
             }
             .padding()
-            .font(.largeTitle.bold())
             .presentationDetents([.height(200)])
             .presentationBackgroundInteraction(.enabled(upThrough: .height(200)))
             .presentationCornerRadius(0)
@@ -95,26 +129,24 @@ struct GenreExampleView: View {
     }
 }
 
-#Preview {
-    GenreExampleView()
-}
-
 struct SelectedGenreView: View {
     @Binding var selectedGenres: Set<Temp>
     let genre: Temp
     
     var body: some View {
         Text(genre.name)
-            .font(.callout)
-            .padding(.vertical, 5)
-            .padding(.horizontal, 5)
+            .padding(10)
             .foregroundStyle(.white)
             .background(Color.init(uiColor: .button))
             .clipShape(Capsule())
             .onTapGesture {
-                withAnimation() {
+                withAnimation(.easeInOut) {
                     let _ = selectedGenres.remove(genre)
                 }
             }
     }
+}
+
+#Preview {
+    GenreExampleView()
 }

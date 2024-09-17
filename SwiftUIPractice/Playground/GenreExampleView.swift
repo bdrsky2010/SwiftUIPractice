@@ -39,6 +39,7 @@ struct GenreExampleView: View {
     private let genreNames = Temp.dummy
         .sorted { $0.name < $1.name }
     @State private var selectedGenres: Set<Temp> = []
+    @State private var selectedGenreRows: [[Temp]] = []
     
     var body: some View {
         ScrollView {
@@ -65,7 +66,6 @@ struct GenreExampleView: View {
                             }
                             
                         }
-                        .animation(.easeInOut, value: selectedGenres.contains(genre))
                 }
             }
             
@@ -75,43 +75,24 @@ struct GenreExampleView: View {
         }
         .sheet(isPresented: .constant(true)) {
             VStack {
-                var width = CGFloat.zero
-                var height = CGFloat.zero
-                GeometryReader { geo in
-                    ScrollView {
-                        ZStack(alignment: .topLeading, content: {
-                            ForEach(selectedGenres.sorted { $0.name < $1.name }, id: \.id) { genre in
-                                SelectedGenreView(selectedGenres: $selectedGenres, genre: genre)
-                                    .padding(.all, 5)
-                                    .alignmentGuide(.leading) { dimension in
-                                        if (abs(width - dimension.width) > geo.size.width) {
-                                            width = 0
-                                            height -= dimension.height
-                                        }
-                                        let result = width
-                                        if genre.id == selectedGenres.sorted(by: { $0.name < $1.name }).last!.id {
-                                            width = 0
-                                        } else {
-                                            width -= dimension.width
-                                        }
-                                        return result
-                                    }
-                                    .alignmentGuide(.top) { dimension in
-                                        let result = height
-                                        if genre.id == selectedGenres.sorted(by: { $0.name < $1.name }).last!.id {
-                                            height = 0
-                                        }
-                                        return result
-                                    }
+                ScrollView {
+                    LazyVStack(alignment: .center, spacing: 15) {
+                        ForEach(selectedGenreRows, id: \.self) { row in
+                            HStack(spacing: 12) {
+                                ForEach(row, id: \.id) { tag in
+                                    SelectedGenreView(selectedGenres: $selectedGenres, genre: tag)
+                                }
                             }
-                        })
+                        }
                     }
                 }
+                .frame(width: TagHandler.windowWidth)
+
                 Button {
                     
                 } label: {
                     Text("Done")
-                        .font(.title)
+                        .font(.title2)
                         .frame(maxWidth: .infinity)
                         .padding(.horizontal, 20)
                         .padding(.vertical, 8)
@@ -125,6 +106,9 @@ struct GenreExampleView: View {
             .presentationCornerRadius(0)
             .presentationDragIndicator(.visible)
             .interactiveDismissDisabled()
+        }
+        .onChange(of: selectedGenres) { _ in
+            selectedGenreRows = TagHandler.getRows(tags: selectedGenres, spacing: 40, fontSize: 16, windowWidth: TagHandler.windowWidth)
         }
     }
 }

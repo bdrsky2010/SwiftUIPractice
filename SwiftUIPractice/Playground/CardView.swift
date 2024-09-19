@@ -20,49 +20,46 @@ struct CardView: View {
     @State private var show = false
     var body: some View {
         VStack {
-            ZStack {
-                CardItem(namespace: namespace, show: $show, index: $index, items: $items, cardSize: $cardSize)
-                    .onTapGesture {
-                        withAnimation(.spring(response: 0.6,
-                                              dampingFraction: 0.8)) {
-                            show = true
-                        }
+            CardItem(namespace: namespace, show: $show, index: $index, items: $items, cardSize: $cardSize)
+                .onTapGesture {
+                    withAnimation(.spring(response: 0.6,
+                                          dampingFraction: 0.8)) {
+                        show = true
                     }
-                    
-                if show {
-                    GeometryReader { proxy in
-                        ScrollView {
-                            VStack {
-                                Rectangle()
-                                    .frame(width: proxy.size.width * 0.8, height: proxy.size.height * 0.4)
-//                                    .frame(width: cardSize.width, height: cardSize.height)
-                                    .padding(.top, 80)
-                                    .padding(.bottom, 20)
-                                    .matchedGeometryEffect(id: "CARD", in: namespace, isSource: show)
-                                    
-                                Text("""
-                             It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
-                             """)
-                            }
-                        }
-                        .border(.blue, width: 1)
-                        .onTapGesture {
-                            withAnimation(.spring(response: 0.6,
-                                                  dampingFraction: 0.8)) {
-                                show  = false
-                            }
-                        }
-                    }
-                    .ignoresSafeArea()
-                    .background(.background)
-                    .border(.red, width: 1)
                 }
-            }
+                .overlay {
+                    if show {
+                        GeometryReader { proxy in
+                            ScrollView {
+                                VStack {
+                                    Rectangle()
+                                    //                                        .frame(height: proxy.size.height * 0.5)
+                                        .frame(width: cardSize.width, height: cardSize.height)
+                                        .padding(.top, 195)
+                                        .padding(.bottom, 20)
+                                        .matchedGeometryEffect(id: "CARD", in: namespace)
+                                    
+                                    Text("""
+                                 It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
+                                 """)
+                                }
+                            }
+                            .padding(.horizontal, 25)
+                            .border(.blue, width: 1)
+                            .onTapGesture {
+                                withAnimation(.spring(response: 0.6,
+                                                      dampingFraction: 0.8)) {
+                                    show  = false
+                                }
+                            }
+                        }
+                        .ignoresSafeArea()
+                        .background(.ultraThinMaterial)
+                        .border(.red, width: 1)
+                    }
+                }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
-        .background {
-//                        BackgroundView(index: $index, items: items)
-        }
         .ignoresSafeArea()
     }
 }
@@ -81,7 +78,7 @@ fileprivate struct CardItem: View {
         }
         .padding(.horizontal, -15)
         .padding(.vertical, 200)
-        .matchedGeometryEffect(id: "CARD", in: namespace, isSource: !show)
+        .matchedGeometryEffect(id: "CARD", in: namespace)
     }
 }
 
